@@ -1,4 +1,4 @@
-module github.com/kopo-k/go-newsbot-discord
+module github.com/kopo-k/go-discord-newsbot 
 
 go 1.24.3
 
