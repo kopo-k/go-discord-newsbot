@@ -2,15 +2,22 @@ package main
 
 import (
 	"fmt"
-	"os"
 
-	"github.com/kopo-k/go-discord-newsbot/config" // ←ここを自分のモジュール名に
+	"github.com/kopo-k/go-discord-newsbot/config"
+	"github.com/kopo-k/go-discord-newsbot/internal/news"
 )
 
 func main() {
 	config.LoadEnv()
 
-	fmt.Println("DISCORD_TOKEN:", os.Getenv("DISCORD_TOKEN"))
-	fmt.Println("NEWS_API_KEY:", os.Getenv("NEWS_API_KEY"))
-	fmt.Println("CHANNEL_ID:", os.Getenv("CHANNEL_ID"))
+	articles, err := news.GetTopNews()
+	if err != nil {
+		panic(err)
+	}
+
+	for _, article := range articles {
+		fmt.Println("📰", article.Title)
+		fmt.Println(article.URL)
+		fmt.Println()
+	}
 }
