@@ -1,16 +1,17 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"log"
 
-	"github.com/kopo-k/go-discord-newsbot/config" // ←ここを自分のモジュール名に
+	"github.com/kopo-k/go-discord-newsbot/config"
+	"github.com/kopo-k/go-discord-newsbot/internal/bot"
 )
 
 func main() {
 	config.LoadEnv()
 
-	fmt.Println("DISCORD_TOKEN:", os.Getenv("DISCORD_TOKEN"))
-	fmt.Println("NEWS_API_KEY:", os.Getenv("NEWS_API_KEY"))
-	fmt.Println("CHANNEL_ID:", os.Getenv("CHANNEL_ID"))
+	err := bot.StartBot()
+	if err != nil {
+		log.Fatalf("Bot 起動エラー: %v", err)
+	}
 }
