@@ -1,23 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/kopo-k/go-discord-newsbot/config"
-	"github.com/kopo-k/go-discord-newsbot/internal/news"
+	"github.com/kopo-k/go-discord-newsbot/internal/bot"
 )
 
 func main() {
 	config.LoadEnv()
 
-	articles, err := news.GetTopNews()
+	err := bot.StartBot()
 	if err != nil {
-		panic(err)
-	}
-
-	for _, article := range articles {
-		fmt.Println("📰", article.Title)
-		fmt.Println(article.URL)
-		fmt.Println()
+		log.Fatalf("Bot 起動エラー: %v", err)
 	}
 }

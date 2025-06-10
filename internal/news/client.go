@@ -8,7 +8,8 @@ import (
 	"os"
 )
 
-const newsAPIURL = "https://newsapi.org/v2/top-headlines?country=us&pageSize=5"
+const newsAPIURL = "https://newsapi.org/v2/top-headlines?country=us&category=technology&pageSize=5"
+
 
 type Article struct {
 	Title       string `json:"title"`
